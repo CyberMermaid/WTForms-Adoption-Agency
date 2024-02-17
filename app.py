@@ -12,6 +12,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///adopt'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
+
+@app.route("/")
+def list_pets():
+    """List pets"""
+    pets = Pet.query.all()
+    return render_template("list.html", pets=pets) 
+
+
+
 connect_db(app)
 
 if __name__ == '__main__':
